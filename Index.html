@@ -3,27 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayot Beacon — Безопасность</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Hayot Beacon — Платформа спасения</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container" id="authScreen">
-        <h2>Hayot Beacon</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Пароль">
-        <button class="btn btn-main" onclick="handleAuth()">Продолжить</button>
-        <p class="toggle-text" onclick="toggleAuthMode()">Нет аккаунта? <b>Создать</b></p>
-    </div>
 
-    <div class="container hidden" id="mainScreen">
-        <div class="status-badge">СИСТЕМА АКТИВНА</div>
-        <button class="sos-btn" onclick="sendSOS()">SOS</button>
-        <div class="action-grid">
-            <button class="btn btn-secondary" onclick="alert('Медпункты Андижана...')">🏥 Помощь</button>
-            <button class="btn btn-secondary" onclick="toggleVolunteer()">🙋‍♂️ Волонтер</button>
+    <nav class="glass-nav hidden" id="mainNav">
+        <div class="nav-content">
+            <span class="nav-logo">Hayot</span>
+            <div class="nav-links">
+                <button onclick="showSection('listSection')">Список</button>
+                <button onclick="showSection('profileSection')">Мой профиль</button>
+                <button class="logout-link" onclick="location.reload()">Выход</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="screen active" id="roleScreen">
+        <div class="hero-text">
+            <h1>Hayot Beacon</h1>
+            <p>Единая экосистема безопасности Андижана</p>
+        </div>
+        <div class="role-selection">
+            <div class="card-option" onclick="selectRole('user')">
+                <div class="icon-circle">👤</div>
+                <h3>Пациент</h3>
+                <p>Нужна медицинская помощь или уход</p>
+            </div>
+            <div class="card-option vol-style" onclick="selectRole('volunteer')">
+                <div class="icon-circle">🆘</div>
+                <h3>Волонтер</h3>
+                <p>Готов помогать и спасать жизни</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="screen hidden" id="regScreen">
+        <div class="glass-card form-card">
+            <h2 id="regTitle">Регистрация профиля</h2>
+            <div id="formFields" class="multi-column-form">
+                </div>
+            <button class="btn-action" onclick="finishReg()">Создать аккаунт</button>
+        </div>
+    </section>
+
+    <section class="screen hidden" id="listSection">
+        <div class="section-header">
+            <h2 id="listTitle">Найти помощь</h2>
+            <input type="text" id="searchInput" placeholder="Поиск по имени или адресу..." onkeyup="filterCards()">
+        </div>
+        <div id="cardsGrid" class="cards-grid">
+            </div>
+    </section>
+
+    <section class="screen hidden" id="profileSection">
+        <div class="glass-card profile-view">
+            <div id="myProfileData"></div>
+        </div>
+    </section>
+
+    <button class="big-sos-btn hidden" id="globalSos" onclick="triggerSos()">SOS</button>
+
+    <div id="modal" class="modal-overlay hidden" onclick="closeModal()">
+        <div class="modal-window" onclick="event.stopPropagation()">
+            <div id="modalContent"></div>
+            <button class="btn-close" onclick="closeModal()">Закрыть</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
