@@ -3,35 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayot Beacon — Система спасения</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Hayot Beacon — Безопасность</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container" id="authScreen">
+        <h2>Hayot Beacon</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Пароль">
+        <button class="btn btn-main" onclick="handleAuth()">Продолжить</button>
+        <p class="toggle-text" onclick="toggleAuthMode()">Нет аккаунта? <b>Создать</b></p>
+    </div>
 
-<div class="container" id="authScreen">
-    <h2>Hayot Beacon</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Пароль (A-z, 123, 8+)">
-    <button class="btn btn-main" onclick="handleAuth()">Продолжить</button>
-    <p class="hint" id="toggleText" onclick="toggleAuthMode()">Нет аккаунта? <b>Создать</b></p>
-</div>
-
-<div class="container hidden" id="mainScreen">
-    <h2 id="welcomeText">Нужна помощь?</h2>
-    
-    <div class="sos-container">
+    <div class="container hidden" id="mainScreen">
+        <div class="status-badge">СИСТЕМА АКТИВНА</div>
         <button class="sos-btn" onclick="sendSOS()">SOS</button>
+        <div class="action-grid">
+            <button class="btn btn-secondary" onclick="alert('Медпункты Андижана...')">🏥 Помощь</button>
+            <button class="btn btn-secondary" onclick="toggleVolunteer()">🙋‍♂️ Волонтер</button>
+        </div>
     </div>
-
-    <button class="btn btn-main" style="margin-bottom: 10px;" onclick="alert('Поиск больниц в Андижане...')">Ближайшие медпункты</button>
-
-    <div class="volunteer-toggle" onclick="toggleVolunteer()">
-        <div id="volStatus">Режим волонтера: <b>ВЫКЛ</b></div>
-        <div class="hint">Включите, чтобы помогать другим</div>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
